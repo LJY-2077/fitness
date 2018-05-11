@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mou.fitness.user.mapper.ExtUserMapper">
+	<resultMap id="BaseResultMap" type="com.mou.fitness.common.entity.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="head_icon" property="headIcon" jdbcType="VARCHAR" />
+		<result column="gender" property="gender" jdbcType="TINYINT" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="e_mail" property="eMail" jdbcType="VARCHAR" />
+		<result column="adresss" property="adresss" jdbcType="VARCHAR" />
+		<result column="height" property="height" jdbcType="DOUBLE" />
+		<result column="width" property="width" jdbcType="DOUBLE" />
+		<result column="bust" property="bust" jdbcType="DOUBLE" />
+		<result column="waist" property="waist" jdbcType="DOUBLE" />
+		<result column="hip" property="hip" jdbcType="DOUBLE" />
+		<result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+		<result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, nick_name, password, head_icon, gender, tel,
+		e_mail, adresss,
+		height, width,
+		bust, waist, hip, gmt_create, gmt_modify
+	</sql>
+
+	<select id="findAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from user
+
+	</select>
+	<select id="findByPojo" resultMap="BaseResultMap"
+		parameterType="com.mou.fitness.common.entity.User">
+		select
+		<include refid="Base_Column_List" />
+		from user where name=#{name}
+	</select>
+	<select id="findByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user limit #{minSize} , #{maxSize}
+	</select>
+	<select id="searchUser" resultMap="BaseResultMap"
+		parameterType="com.mou.fitness.common.utils.PageUtil">
+		select
+		<include refid="Base_Column_List" />
+		from user
+	</select>
+
+
+</mapper>

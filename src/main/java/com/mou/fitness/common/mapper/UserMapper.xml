@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mou.fitness.common.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.mou.fitness.common.entity.User" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="head_icon" property="headIcon" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="TINYINT" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="e_mail" property="eMail" jdbcType="VARCHAR" />
+    <result column="adresss" property="adresss" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="DOUBLE" />
+    <result column="width" property="width" jdbcType="DOUBLE" />
+    <result column="bust" property="bust" jdbcType="DOUBLE" />
+    <result column="waist" property="waist" jdbcType="DOUBLE" />
+    <result column="hip" property="hip" jdbcType="DOUBLE" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, nick_name, password, head_icon, gender, tel, e_mail, adresss, height, width, 
+    bust, waist, hip, gmt_create, gmt_modify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mou.fitness.common.entity.User" >
+    insert into user (id, name, nick_name, 
+      password, head_icon, gender, 
+      tel, e_mail, adresss, 
+      height, width, bust, waist, 
+      hip, gmt_create, gmt_modify
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{headIcon,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
+      #{tel,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR}, #{adresss,jdbcType=VARCHAR}, 
+      #{height,jdbcType=DOUBLE}, #{width,jdbcType=DOUBLE}, #{bust,jdbcType=DOUBLE}, #{waist,jdbcType=DOUBLE}, 
+      #{hip,jdbcType=DOUBLE}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mou.fitness.common.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="headIcon != null" >
+        head_icon,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="eMail != null" >
+        e_mail,
+      </if>
+      <if test="adresss != null" >
+        adresss,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="width != null" >
+        width,
+      </if>
+      <if test="bust != null" >
+        bust,
+      </if>
+      <if test="waist != null" >
+        waist,
+      </if>
+      <if test="hip != null" >
+        hip,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="headIcon != null" >
+        #{headIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="eMail != null" >
+        #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="adresss != null" >
+        #{adresss,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=DOUBLE},
+      </if>
+      <if test="bust != null" >
+        #{bust,jdbcType=DOUBLE},
+      </if>
+      <if test="waist != null" >
+        #{waist,jdbcType=DOUBLE},
+      </if>
+      <if test="hip != null" >
+        #{hip,jdbcType=DOUBLE},
+      </if>
+      <if test="gmtCreate != null" >
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mou.fitness.common.entity.User" >
+    update user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="headIcon != null" >
+        head_icon = #{headIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=TINYINT},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="eMail != null" >
+        e_mail = #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="adresss != null" >
+        adresss = #{adresss,jdbcType=VARCHAR},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=DOUBLE},
+      </if>
+      <if test="bust != null" >
+        bust = #{bust,jdbcType=DOUBLE},
+      </if>
+      <if test="waist != null" >
+        waist = #{waist,jdbcType=DOUBLE},
+      </if>
+      <if test="hip != null" >
+        hip = #{hip,jdbcType=DOUBLE},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mou.fitness.common.entity.User" >
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      head_icon = #{headIcon,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=TINYINT},
+      tel = #{tel,jdbcType=VARCHAR},
+      e_mail = #{eMail,jdbcType=VARCHAR},
+      adresss = #{adresss,jdbcType=VARCHAR},
+      height = #{height,jdbcType=DOUBLE},
+      width = #{width,jdbcType=DOUBLE},
+      bust = #{bust,jdbcType=DOUBLE},
+      waist = #{waist,jdbcType=DOUBLE},
+      hip = #{hip,jdbcType=DOUBLE},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
